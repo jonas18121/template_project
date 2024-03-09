@@ -10,6 +10,18 @@ git clone https://github.com/jonas18121/template_project.git
 
 2) Renommez le nom du projet `template_project` par le nouveau nom de votre project exemple `new_project` partout ou on trouve le nom `template_project`
 
+3) Générer le fichier `docker-composer.yml` pour enlever l'extention `.dist`
+
+```ps
+make docker-compose
+```
+
+4) Générer le fichier `.env` à la racine du projet pour enlever l'extention `.dist`
+
+```ps
+make generate-root-env
+```
+
 3) Supprimez le fichier `.git` et faire un git init
 
 ```ps
