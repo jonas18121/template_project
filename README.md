@@ -64,6 +64,8 @@ make exec-cli-app
 
 2) Créez le projet Symfony à partir du répertoire `/var/www/app`
 
+- [Installation et configuration du framework Symfony](https://symfony.com/doc/current/setup.html)
+
 ```ps
 composer create-project symfony/skeleton:"7.0.*" my_project_directory
 ```
