@@ -1,6 +1,6 @@
 # README
 
-## Initialiser le projet
+### Initialiser le projet
 
 1) Clonez le projet
 
@@ -24,33 +24,39 @@ Exemple pour Symfony 7.0 il faut :
 - Composer 2.7.1 
 - xdebug-3.2.0 
 
-5) Construire le projet avec `docker-build` qui représente `docker-compose build`
-
-```ps
-make docker-build
-```
-
-6) Lancez les contenaires docker
-
-```ps
-docker-compose up -d
-```
-
-### Créer un projet Symfony dans app
-
-1) Créez un dossier app s'il n'existe pas
+5) Créez un dossier app à la racine du projet, s'il n'existe pas
 
 ```ps
 mkdir app
 ```
 
-2) La commande ci-dessous permet d'entrez dans le contenaire PHP pour être dans le répertoire `/var/www/app` du contenaire PHP
+6) Construire le projet avec `docker-build` qui représente `docker-compose build`
+
+```ps
+make docker-build
+```
+
+7) Créez et démarrez les contenaires docker (représente `docker-compose up -d`)
+
+```ps
+make run
+```
+
+8) (Facultative) Pour arreter et supprimer les contenaires docker (représente `docker-compose down`)
+
+```ps
+make down
+```
+
+### Créer un projet Symfony dans app
+
+1) La commande ci-dessous permet d'entrez dans le contenaire PHP pour être dans le répertoire `/var/www/app` du contenaire PHP
 
 ```ps
 make exec-cli-app
 ```
 
-3) Créez le projet Symfony à partir du répertoire `/var/www/app`
+2) Créez le projet Symfony à partir du répertoire `/var/www/app`
 
 ```ps
 composer create-project symfony/skeleton:"7.0.*" my_project_directory
@@ -62,7 +68,7 @@ Bravo !!!
 
 Vous pouvez accéder au projet avec les liens ci-dessous
 
-## Access
+### Access
 
 Access to the projet locally on : http://127.0.0.1:8971/
 
