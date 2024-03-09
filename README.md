@@ -93,9 +93,9 @@ git commit -m "First commit"
 
 git branch -M master
 
-git remote add https://github.com/your_user12121/your_project_name.git
+git remote add origin https://github.com/your_user12121/your_project_name.git
 
 git remote  -v
 
-git push -u origine master
+git push -u origin master
 ```
