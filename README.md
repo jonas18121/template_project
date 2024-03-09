@@ -42,7 +42,13 @@ make docker-build
 make run
 ```
 
-8) (Facultative) Pour arreter et supprimer les contenaires docker (représente `docker-compose down`)
+8) Vérifiez si les contenaires sont bien créer
+
+```ps
+docker ps
+```
+
+9) (Facultative) Pour arrêter et supprimer les contenaires docker (représente `docker-compose down`)
 
 ```ps
 make down
