@@ -10,13 +10,25 @@ git clone https://github.com/jonas18121/template_project.git
 
 2) Renommez le nom du projet `template_project` par le nouveau nom de votre project exemple `new_project` partout ou on trouve le nom `template_project`
 
-3) Supprimez le fichier `.git` et faire un git init
+3) Générer le fichier `docker-composer.yml` pour enlever l'extention `.dist`
+
+```ps
+make docker-compose
+```
+
+4) Générer le fichier `.env` à la racine du projet pour enlever l'extention `.dist`
+
+```ps
+make generate-root-env
+```
+
+5) Supprimez le fichier `.git` et faire un git init
 
 ```ps
 git init
 ```
 
-4) Suivant la version de Symfony qu'on beut utiliser, il faudra surement modifier la version de PHP, de composer et de x-debug dans le fichier PHP/Dockerfile
+6) Suivant la version de Symfony qu'on beut utiliser, il faudra surement modifier la version de PHP, de composer et de x-debug dans le fichier PHP/Dockerfile
 
 Exemple pour Symfony 7.0 il faut :
 
@@ -24,31 +36,31 @@ Exemple pour Symfony 7.0 il faut :
 - Composer 2.7.1 
 - xdebug-3.2.0 
 
-5) Créez un dossier app à la racine du projet, s'il n'existe pas
+7) Créez un dossier app à la racine du projet, s'il n'existe pas
 
 ```ps
 mkdir app
 ```
 
-6) Construire le projet avec `docker-build` qui représente `docker-compose build`
+8) Construire le projet avec `docker-build` qui représente `docker-compose build`
 
 ```ps
 make docker-build
 ```
 
-7) Créez et démarrez les contenaires docker (représente `docker-compose up -d`)
+9) Créez et démarrez les contenaires docker (représente `docker-compose up -d`)
 
 ```ps
 make run
 ```
 
-8) Vérifiez si les contenaires sont bien créer
+10) Vérifiez si les contenaires sont bien créer
 
 ```ps
 docker ps
 ```
 
-9) (Facultative) Pour arrêter et supprimer les contenaires docker (représente `docker-compose down`)
+11) (Facultative) Pour arrêter et supprimer les contenaires docker (représente `docker-compose down`)
 
 ```ps
 make down
@@ -93,9 +105,9 @@ git commit -m "First commit"
 
 git branch -M master
 
-git remote add https://github.com/your_user12121/your_project_name.git
+git remote add origin https://github.com/your_user12121/your_project_name.git
 
 git remote  -v
 
-git push -u origine master
+git push -u origin master
 ```
