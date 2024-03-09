@@ -167,6 +167,12 @@ start: ## start application containers
 stop: ## Stop application containers
 	make docker-stop
 
+run: ## run Docker in the background
+	make docker-run
+
+down: ## stop and delete all containers, networks, and volumes associated with a Docker Compose project. Limited to the specific project
+	make docker-down
+
 docker-build: ## Build and rebuild application containers
 	docker-compose build
 
