@@ -22,13 +22,13 @@ make docker-compose
 make generate-root-env
 ```
 
-3) Supprimez le fichier `.git` et faire un git init
+5) Supprimez le fichier `.git` et faire un git init
 
 ```ps
 git init
 ```
 
-4) Suivant la version de Symfony qu'on beut utiliser, il faudra surement modifier la version de PHP, de composer et de x-debug dans le fichier PHP/Dockerfile
+6) Suivant la version de Symfony qu'on beut utiliser, il faudra surement modifier la version de PHP, de composer et de x-debug dans le fichier PHP/Dockerfile
 
 Exemple pour Symfony 7.0 il faut :
 
@@ -36,31 +36,31 @@ Exemple pour Symfony 7.0 il faut :
 - Composer 2.7.1 
 - xdebug-3.2.0 
 
-5) Créez un dossier app à la racine du projet, s'il n'existe pas
+7) Créez un dossier app à la racine du projet, s'il n'existe pas
 
 ```ps
 mkdir app
 ```
 
-6) Construire le projet avec `docker-build` qui représente `docker-compose build`
+8) Construire le projet avec `docker-build` qui représente `docker-compose build`
 
 ```ps
 make docker-build
 ```
 
-7) Créez et démarrez les contenaires docker (représente `docker-compose up -d`)
+9) Créez et démarrez les contenaires docker (représente `docker-compose up -d`)
 
 ```ps
 make run
 ```
 
-8) Vérifiez si les contenaires sont bien créer
+10) Vérifiez si les contenaires sont bien créer
 
 ```ps
 docker ps
 ```
 
-9) (Facultative) Pour arrêter et supprimer les contenaires docker (représente `docker-compose down`)
+11) (Facultative) Pour arrêter et supprimer les contenaires docker (représente `docker-compose down`)
 
 ```ps
 make down
