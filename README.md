@@ -4,7 +4,7 @@
 
 1) Clonez le projet
 
-```bash
+```ps
 git clone https://github.com/jonas18121/template_project.git
 ```
 
@@ -12,19 +12,19 @@ git clone https://github.com/jonas18121/template_project.git
 
 3) Générer le fichier `docker-composer.yml` pour enlever l'extention `.dist`
 
-```bash
+```ps
 make docker-compose
 ```
 
 4) Générer le fichier `.env` à la racine du projet pour enlever l'extention `.dist`
 
-```bash
+```ps
 make generate-root-env
 ```
 
 5) Supprimez le fichier `.git` et faire un git init
 
-```bash
+```ps
 git init
 ```
 
@@ -38,31 +38,31 @@ Exemple pour Symfony 7.0 il faut :
 
 7) Créez un dossier app à la racine du projet, s'il n'existe pas
 
-```bash
+```ps
 mkdir app
 ```
 
 8) Construire le projet avec `docker-build` qui représente `docker-compose build`
 
-```bash
+```ps
 make docker-build
 ```
 
 9) Créez et démarrez les contenaires docker (représente `docker-compose up -d`)
 
-```bash
+```ps
 make run
 ```
 
 10) Vérifiez si les contenaires sont bien créer
 
-```bash
+```ps
 docker ps
 ```
 
 11) (Facultative) Pour arrêter et supprimer les contenaires docker (représente `docker-compose down`)
 
-```bash
+```ps
 make down
 ```
 
@@ -70,7 +70,7 @@ make down
 
 1) La commande ci-dessous permet d'entrez dans le contenaire PHP pour être dans le répertoire `/var/www/app` du contenaire PHP
 
-```bash
+```ps
 make exec-cli-app
 ```
 
@@ -78,7 +78,7 @@ make exec-cli-app
 
 - [Installation et configuration du framework Symfony](https://symfony.com/doc/current/setup.html)
 
-```bash
+```ps
 composer create-project symfony/skeleton:"7.0.*" my_project_directory
 ```
 
@@ -98,7 +98,7 @@ Access to the project's phpmyadmin locally on : http://127.0.0.1:8080/
 
 ### Premier commit sur votre le projet que vous avez préalablement créer
 
-```bash
+```ps
 git add .
 
 git commit -m "First commit"
@@ -121,7 +121,7 @@ git push -u origin master
     - le `nom de base de données` 
     - et utiliser le `nom de container MYSQL` à la place de `name_container_mysql`
 
-```bash
+```ps
 ###> doctrine/doctrine-bundle ###
 # Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
 # IMPORTANT: You MUST configure your server version, either here or in config/packages/doctrine.yaml
@@ -135,6 +135,6 @@ DATABASE_URL="mysql://name_user:password@name_container_mysql:3306/db_name?serve
 
 2. faite la commande ci-dessous pour creer la base de données
 
-```bash
+```ps
 php bin/console doctrine:database:create
 ```
