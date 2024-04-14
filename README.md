@@ -92,9 +92,11 @@ Vous pouvez accéder au projet avec les liens ci-dessous
 
 Access to the projet locally on : http://127.0.0.1:8971/
 
-Access to the project's phpmyadmin locally on : http://127.0.0.1:8080/
+Access to the project's PHPMyAdmin locally on : http://127.0.0.1:8080/
 - user : root
 - password : ''
+
+Access to the project's MaiDev locally on : http://127.0.0.1:8081/
 
 ### Premier commit sur votre le projet que vous avez préalablement créer
 
