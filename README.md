@@ -28,7 +28,7 @@ make generate-root-env
 git init
 ```
 
-6) Suivant la version de Symfony qu'on beut utiliser, il faudra surement modifier la version de PHP, de composer et de x-debug dans le fichier PHP/Dockerfile
+6) Suivant la version de Symfony qu'on veut utiliser, il faudra surement modifier la version de PHP, de composer et de x-debug dans le fichier PHP/Dockerfile
 
 Exemple pour Symfony 7.0 il faut :
 
@@ -100,7 +100,7 @@ Access to the project's MaiDev locally on : http://127.0.0.1:8081/
 
 ### Premier commit sur votre le projet que vous avez préalablement créer
 
-```ps
+```bash
 git add .
 
 git commit -m "First commit"
@@ -123,7 +123,7 @@ git push -u origin master
     - le `nom de base de données` 
     - et utiliser le `nom de container MYSQL` à la place de `name_container_mysql`
 
-```ps
+```bash
 ###> doctrine/doctrine-bundle ###
 # Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
 # IMPORTANT: You MUST configure your server version, either here or in config/packages/doctrine.yaml
@@ -135,8 +135,96 @@ DATABASE_URL="mysql://name_user:password@name_container_mysql:3306/db_name?serve
 ###< doctrine/doctrine-bundle ###
 ```
 
-2. faite la commande ci-dessous pour creer la base de données
+2. faite la commande ci-dessous pour créer la base de données
 
 ```ps
 php bin/console doctrine:database:create
+```
+
+### Utilisation de Mailjet
+
+- Installation dans le projet Symfony
+
+```bash
+composer require mailjet/mailjet-apiv3-php
+```
+
+- Ajoutez le DNS ci-dessous dans le fichier `.env`
+
+```bash
+###> symfony/mailer ###
+# MAILER_DSN=null://null
+MAILER_DSN=smtp://maildev:1025
+###< symfony/mailer ###
+```
+
+- Configuration du fichier config/packages/mailer.yaml du projet Symfony
+
+```yaml
+framework:
+    mailer:
+        dsn: '%env(MAILER_DSN)%'
+```
+
+- Exemple d'utilisation dans un controller
+
+- Ne pas oublier de créer les différent fichiers comme `ContactType.php`, `contact/contact.html.twig'`, `emails/contact.html.twig`
+
+```php
+// ContactController.php
+
+namespace App\Controller;
+
+use App\DTO\ContactDTO;
+use App\Form\ContactType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class ContactController extends AbstractController
+{
+    #[Route('/contact', name: 'app_contact')]
+    public function contact(
+        Request $request,
+        MailerInterface $mailer
+    ): Response
+    {
+        $data = new ContactDTO();
+
+        $form = $this->createForm(ContactType::class, $data);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $email = (new TemplatedEmail())
+                ->from($data->email)
+                ->to($data->service)
+                //->cc('cc@example.com')
+                //->bcc('bcc@example.com')
+                //->replyTo('fabien@example.com')
+                //->priority(Email::PRIORITY_HIGH)
+                ->subject('Demande de contact')
+                //->text('Sending emails is fun again!')
+                //->html('<p>See Twig integration for better HTML integration!</p>')
+                ->htmlTemplate('emails/contact.html.twig')
+                ->context(['data' => $data]);
+
+            $mailer->send($email);
+
+            // $entityManager->flush();
+
+            $this->addFlash('success', 'Le mail a bien été envoyé');
+            return $this->redirectToRoute('app_contact');
+        }
+
+
+        return $this->render('contact/contact.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+}
 ```
